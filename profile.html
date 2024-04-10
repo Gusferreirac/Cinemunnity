@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <!-- Incluindo o Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .search{
+            position: relative;
+            margin-left: auto;
+        }
+
+        .search input{
+            width: 100%;
+            border: 2px solid #edebeb;
+            border-radius: 5px;
+            text-indent: 5px;
+            padding: 5px;
+        }
+
+        .search input:focus{
+            border-color: #a3a3a3;
+            outline: #a3a3a3;
+        }
+
+        .search button{
+           position: absolute;
+           right: 10px;
+           background-color: transparent;
+           border: none;
+        }
+
+        .search-icon{
+            width: 15px;
+            cursor: pointer;
+        }
+
+        .mini-pic {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            margin-right: 20px;
+        }
+
+        .profile-header {
+            background-color: #7e7f80;
+            padding: 20px 0;
+            width: 100vw;
+        }
+        .profile-pic {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+        .profile-tags button {
+            margin-bottom: 20px;
+            background-color: #c2c1c0;
+        }
+        .profile-tags .btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .profile-info {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .profile-circle {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            background-color: #e3e3e3;
+            color: #fff;
+            display: flex;
+            margin: auto;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+        .profile-circle img {
+            max-width: 70%;
+            margin-bottom: 10px;
+            margin: auto;
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="assets/scorsese.jpg"Foto de Perfil" class="mini-pic">
+        <a class="navbar-brand font-weight-bold" href="#">Profile</a>
+        <form class="form-inline my-2 my-lg-0 search">
+            <input class="search" type="search" placeholder="Search in site" aria-label="Search">
+            <button class="button" type="submit"><img class="search-icon" src="assets/search.png" alt=""></button>
+        </form>
+        <!-- Adicione itens de navegação, links de logout, etc., conforme necessário -->
+    </nav>
+
+    <div>
+        <!-- Cabeçalho do Perfil -->
+        <div class="profile-header text-center">
+            <img src="assets/scorsese.jpg"Foto de Perfil" class="profile-pic">
+            <h2 class="text-white font-weight-bold">Martin Scorsese</h2>
+            <div class="profile-tags">
+                <button type="button" class="btn">Movie Buff</button>
+                <button type="button" class="btn">Veteran</button>
+                <!-- Adicione mais botões de tag conforme necessário -->
+            </div>
+            <p class="text-white">Joined In 2022</p>
+        </div>
+
+        <!-- Informações do Perfil -->
+        <div class="profile-info text-center">
+            <h3 class="font-weight-bold">Profile Information</h3>
+            <div class="row justify-content-center">
+                <div class="col-md-3 text-center">
+                    <div class="profile-circle">
+                        <img src="assets/calendar.png" alt="Calendar">
+                    </div>
+                    <p>Joined date</p>
+                    <p class="font-weight-bold h4">April 2022</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="profile-circle">
+                        <img src="assets/clapperboard.png" alt="Favorite Genre">
+                    </div>
+                    <p>Favorite Genre</p>
+                    <p class="font-weight-bold h4">Action</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="profile-circle">
+                        <img src="assets/trophy.png" alt="Movie Awards">
+                    </div>
+                    <p>Movie Awards</p>
+                    <p class="font-weight-bold h4">20</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="profile-circle">
+                        <img src="assets/popcorn.png" alt="Watched Movies">
+                    </div>
+                    <p>Watched Movies</p>
+                    <p class="font-weight-bold h4">300+</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+
+    <!-- Incluindo o Bootstrap JS (necessário para alguns recursos do Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
