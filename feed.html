@@ -7,9 +7,159 @@
         <meta name="Description" content="Enter your description here"/>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
         <title>Cinemmunity</title>
+
+        <style>
+            .search{
+            position: relative;
+            margin-left: auto;
+            }
+
+            .search input{
+                width: 100%;
+                border: 2px solid #edebeb;
+                border-radius: 5px;
+                text-indent: 5px;
+                padding: 5px;
+            }
+
+            .search input:focus{
+                border-color: #a3a3a3;
+                outline: #a3a3a3;
+            }
+
+            .search button{
+            position: absolute;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            }
+
+            .search-icon{
+                width: 15px;
+                cursor: pointer;
+            }
+
+            .mini-pic {
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                margin: 5px;
+                margin-right: 20px;
+            }
+
+            .wrapper{
+                width: 100vw;
+                height: 100vh;
+                
+            }
+
+            .tag{
+                background-color: #dadada;
+                padding: 3px;
+                border-radius: 5px;
+                margin-right: 5px;
+            }
+
+            .post{
+                max-height: 500px;
+                max-width: 500px;
+                margin: 50px auto;
+            }
+
+            .post-img img{
+                height: 100%;
+                width: 100%;
+            }
+
+            .post-profile{
+                height: 30px !important;
+                border-radius: 100%;
+                margin-right: 5px;
+            }
+
+            .share-post{
+                width: 80%;
+                margin: 0 auto;
+            }
+        </style>
     </head>
     <body>
+        <!-- Cabeçalho -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <img src="assets/scorsese.jpg"Foto de Perfil" class="mini-pic">
+        <a class="navbar-brand font-weight-bold" href="#">Profile</a>
+        <form class="form-inline my-2 my-lg-0 search">
+            <input class="search" type="search" placeholder="Search in site" aria-label="Search">
+            <button class="button" type="submit"><img class="search-icon" src="assets/search.png" alt=""></button>
+        </form>
+        <!-- Adicione itens de navegação, links de logout, etc., conforme necessário -->
+    </nav>
 
+        <div class="wrapper">
+            <div class="row">
+                <div class="col bg-dark">
+                    
+                </div>
+                <div class="col-6">
+                    <div class="card mt-5 mb-5 share-post">
+                        <div class="card-header bg-white d-flex">
+                            <img src="assets/scorsese.jpg" class="post-profile" alt="">
+                            <span class="font-weight-bold">Martin Scorsese</span>
+                        </div>
+                        <div class="card-body post-img">
+                            <textarea placeholder="Share your thoughts" name="" id="" cols="40" rows="5" style="width: 100%;"></textarea>
+                        </div>
+                        <div class="card-footer bg-white">
+                           <button class="btn float-right">Share</button>
+                        </div>
+                    </div>
+                    <h2 class="font-weight-bold text-center">Social Feed</h2>
+                    <div class="card post">
+                        <div class="card-header bg-white d-flex">
+                            <img src="assets/scorsese.jpg" class="post-profile" alt="">
+                            <span class="font-weight-bold">Martin Scorsese</span>
+                            <span class="ml-auto">3 hours ago</span>
+                        </div>
+                        <div class="card-body post-img">
+                            <img src="assets/cards/poor-things.jpg" class="" alt="">
+                        </div>
+                        <div class="card-footer bg-white">
+                            <div class="d-block">
+                                <span>Just watched an amazing indie film today!</span>
+                                <br>
+                                <div class="mt-2">
+                                    <span class="tag"><small> IndieFilm </small></span>
+                                    <span class="tag"><small> Recommendation </small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card post">
+                        <div class="card-header bg-white d-flex">
+                            <img src="assets/scorsese.jpg" class="post-profile" alt="">
+                            <span class="font-weight-bold">Martin Scorsese</span>
+                            <span class="ml-auto">3 hours ago</span>
+                        </div>
+                        <div class="card-body post-img">
+                            <img src="assets/cards/poor-things.jpg" class="" alt="">
+                        </div>
+                        <div class="card-footer bg-white">
+                            <div class="d-block">
+                                <span>Just watched an amazing indie film today!</span>
+                                <br>
+                                <div class="mt-2">
+                                    <span class="tag"><small> IndieFilm </small></span>
+                                    <span class="tag"><small> Recommendation </small></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col bg-dark">
+                    
+                </div>
+            </div>
+        </div>
         <!-- Incluindo o Bootstrap JS (necessário para alguns recursos do Bootstrap) -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
