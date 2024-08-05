@@ -1,8 +1,18 @@
+import { MongoClient } from "mongodb";
+
+let client;
+
+async function connectToDatabase() {
+    if (!client) {
+        client = new MongoClient(process.env.MONGODB_URI);
+        await client.connect();
+    }
+    return client.db(process.env.MONGODB_DB);
+}
+
 export async function POST(req) {
     const { title, plot, fullplot, genres, cast, languages, directors, release, runtime, type } = await req.json();
-
-    const client = await clientPromise;
-    const db = client.db('Cinemmunity');
+    const db = await connectToDatabase();
 
     try{
         await db.collection('movies').insertOne({ title, plot, fullplot, genres, cast, languages, directors, release, runtime, type });

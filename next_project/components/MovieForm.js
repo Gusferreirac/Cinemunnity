@@ -35,10 +35,38 @@ function MovieForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Aqui você pode enviar os dados para o banco de dados
     console.log({ title, plot, fullplot, genres, cast, languages, directors, release, runtime, type });
+
+    try {
+      const response = await fetch('/api/add_movie', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ title, plot, fullplot, genres, cast, languages, directors, release, runtime, type }),
+      });
+
+      if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Network response was not ok: ${errorText}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      if (data.success) {
+          //recarrega a página
+          window.location.reload();
+      } else {
+          alert(data.message); // Exibe a mensagem de erro
+      }
+  } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred. Please try again later.');
+  }
   };
 
   return (
