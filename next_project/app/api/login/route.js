@@ -16,6 +16,9 @@ export async function POST(request) {
     const db = await connectToDatabase();
     const collection = db.collection('users'); // Substitua pelo nome da sua coleção
 
+    console.log('email', email);
+    console.log('login', login);
+
     const user = await collection.findOne({ email, login, password });
 
     if (user) {
