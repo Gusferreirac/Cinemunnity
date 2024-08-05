@@ -1,11 +1,16 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function TagsInput(props) {
     const [tag, setTag] = useState("");
     const [tags, setTags] = useState([]);
 
-    console.log(props);
+    useEffect(() => {
+        // Chama a função do pai sempre que a lista de tags muda
+        if (props.onTagsChange) {
+          props.onTagsChange(tags);
+        }
+      }, [tags, props.onTagsChange]);
 
     const handleChange = e => {
         const {value} = e.target;
