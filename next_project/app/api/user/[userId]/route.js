@@ -5,36 +5,32 @@ const client = new MongoClient(process.env.MONGODB_URI, { useNewUrlParser: true,
 const dbName = process.env.MONGODB_DB;
 
 async function connectToDatabase() {
-    if (!client.isConnected()) await client.connect();
+    await client.connect();
     return client.db(dbName);
 }
 
-// Handle POST request to update user data
-export async function POST(request, { params }) {
-    const { userId } = params;
+
+export async function GET(request, { params }) {
+    console.log('Params:', params);
     const db = await connectToDatabase();
     const collection = db.collection('users');
-    const { email, login, password, name, bio, tags, genre, timestamp } = await request.json();
 
     try {
-        const result = await collection.updateOne(
-            { _id: new ObjectId(userId) },
-            { $set: { email, login, password, name, bio, tags, genre, timestamp } }
-        );
+        const user = await collection.findOne({ _id: new ObjectId(params.userId) });
 
-        if (result.matchedCount === 0) {
+        if (user) {
+            return new NextResponse(JSON.stringify({ success: true, user }), {
+                status: 200,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        } else {
             return new NextResponse(JSON.stringify({ success: false, message: 'User not found' }), {
                 status: 404,
                 headers: { 'Content-Type': 'application/json' },
             });
         }
-
-        return new NextResponse(JSON.stringify({ success: true }), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
     } catch (error) {
-        console.error(`Error updating user: ${error.message}`);
+        console.error(`Error fetching user: ${error.message}`);
         return new NextResponse(JSON.stringify({ success: false, message: 'Internal Server Error', error: error.message }), {
             status: 500,
             headers: { 'Content-Type': 'application/json' },

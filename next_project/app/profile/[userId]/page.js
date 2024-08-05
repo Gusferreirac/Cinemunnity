@@ -1,7 +1,37 @@
-import Link from 'next/link'
+"use client";  // Adicione esta linha no topo do arquivo
 
-function Page(){
-    return(
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
+
+function Page({ params }) {
+    const { userId } = params;
+    const [user, setUser] = useState(null);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        async function fetchUser() {
+            try {
+                const response = await fetch(`/api/user/${userId}`);
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} ${response.statusText}`);
+                }
+                const data = await response.json();
+                console.log('User data:', data);
+                setUser(data.user);
+            } catch (error) {
+                console.error('Fetch user error:', error);
+                setError(error.message);
+            }
+        }
+        fetchUser();
+    }, [userId]);
+    
+
+    if (error) return <p>Error: {error}</p>;
+    if (!user) return <p>Loading...</p>;
+
+    return (
         <>
             <head>
             <meta charset="UTF-8"/>
@@ -143,17 +173,14 @@ function Page(){
             <div>
                 <div class="profile-header text-center">
                     <img src="assets/scorsese.jpg" alt="Foto de Perfil" class="profile-pic"/>
-                    <div class="profile-header text-center">
-                <img src="assets/scorsese.jpg" alt="Foto de Perfil" class="profile-pic"/>
-                <h2 class="text-white font-weight-bold">Martin Scorsese</h2>
-                <div class="profile-tags">
-                    <button type="button" class="btn">Movie Buff</button>
-                    <button type="button" class="btn">Veteran</button>
-                </div>
-                <p class="text-white">Joined In 2022</p>
-                <button type="button" class="btn btn-primary follow" onclick="follow();"> Follow </button>
-                <button type="button" class="btn d-none btn-danger unfollow" onclick="unfollow();"> Unfollow </button>
-            </div>
+                    <h2 class="text-white font-weight-bold">{user.name}</h2>
+                    <div class="profile-tags">
+                        <button type="button" class="btn">Movie Buff</button>
+                        <button type="button" class="btn">Veteran</button>
+                    </div>
+                    <p class="text-white">Joined In {user.joinedDate}</p>
+                    <button type="button" class="btn btn-primary follow" onclick="follow();"> Follow </button>
+                    <button type="button" class="btn d-none btn-danger unfollow" onclick="unfollow();"> Unfollow </button>
                 </div>
                 <div class="profile-info text-center">
                     <h3 class="font-weight-bold">Profile Information</h3>
@@ -163,28 +190,28 @@ function Page(){
                                 <img src="assets/calendar.png" alt="Calendar"/>
                             </div>
                             <p>Joined date</p>
-                            <p class="font-weight-bold h4">April 2022</p>
+                            <p class="font-weight-bold h4">{user.joinedDate}</p>
                         </div>
                         <div class="col-md-3 text-center">
                             <div class="profile-circle">
                                 <img src="assets/clapperboard.png" alt="Favorite Genre"/>
                             </div>
                             <p>Favorite Genre</p>
-                            <p class="font-weight-bold h4">Action</p>
+                            <p class="font-weight-bold h4">{user.favoriteGenre}</p>
                         </div>
                         <div class="col-md-3 text-center">
                             <div class="profile-circle">
                                 <img src="assets/trophy.png" alt="Movie Awards"/>
                             </div>
                             <p>Movie Awards</p>
-                            <p class="font-weight-bold h4">20</p>
+                            <p class="font-weight-bold h4">{user.movieAwards}</p>
                         </div>
                         <div class="col-md-3 text-center">
                             <div class="profile-circle">
                                 <img src="assets/popcorn.png" alt="Watched Movies"/>
                             </div>
                             <p>Watched Movies</p>
-                            <p class="font-weight-bold h4">300+</p>
+                            <p class="font-weight-bold h4">{user.watchedMovies}</p>
                         </div>
                     </div>
                 </div>
