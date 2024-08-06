@@ -70,10 +70,10 @@ function MovieForm() {
   };
 
   return (
-    <div className='relative h-full bg-gray-700'>
+    <div className='relative h-full bg-white'>
       <div className='flex flex-col items-center justify-center'>
-        <h1 className='mb-12 text-center font-bold text-4xl text-white mt-12'>Cadastrar Película</h1>
-        <form className='w-2/3 text-black bg-white p-8 rounded'>
+        <h1 className='mb-4 text-center font-bold text-4xl text-black mt-12'>Cadastrar Película</h1>
+        <form className='w-2/3 text-black  p-8 rounded'>
           <div className='mb-4'>
             <label htmlFor="title" className='block text-lg mb-2'>Título</label>
             <input
@@ -148,7 +148,7 @@ function MovieForm() {
           <div className='mb-4'>
             <label htmlFor='type' className='block text-lg mb-2'>Tipo</label>
             <select
-              className='w-full p-2 border border-gray-600 rounded'
+              className='w-full p-2 border border-gray-600 rounded bg-transparent'
               id='type'
               name='type'
               value={type}
@@ -161,7 +161,7 @@ function MovieForm() {
         </form>
         <button
             onClick={handleSubmit}
-            className='mt-8 mb-12 w-2/3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+            className='mt-2 mb-12 w-1/2 h-12 hover:bg-black bg-transparent hover:text-white text-black border border-black transition-all duration-300 font-bold py-2 px-4 rounded-full'
           >
             Cadastrar
           </button>
