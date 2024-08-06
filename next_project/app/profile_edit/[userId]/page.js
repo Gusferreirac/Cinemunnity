@@ -78,17 +78,17 @@ function Page({ params }) {
             </head>
             <body>
                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <img src="assets/scorsese.jpg" alt="Foto de Perfil" className="mini-pic"/>
+                    <img src="scorsese.jpg" alt="Foto de Perfil" className="mini-pic"/>
                     <a className="navbar-brand font-weight-bold" href="#">Profile</a>
                     <form className="form-inline my-2 my-lg-0 search">
                         <input className="search" type="search" placeholder="Search in site" aria-label="Search"/>
-                        <button className="button" type="submit"><img className="search-icon" src="assets/search.png" alt=""/></button>
+                        <button className="button" type="submit"><img className="search-icon" src="search.png" alt=""/></button>
                     </form>
                 </nav>
 
                 <div>
                     <div className="profile-header text-center">
-                        <img src="assets/scorsese.jpg" alt="Foto de Perfil" className="profile-pic"/>
+                        <img src="scorsese.jpg" alt="Foto de Perfil" className="profile-pic"/>
                         <form id="form">
                             <div className="form-group">
                                 <input type="text" className="form-control" id="name" defaultValue={user.name} required/>

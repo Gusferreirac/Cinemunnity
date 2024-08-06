@@ -158,11 +158,11 @@ function Page({ params }) {
         </head>
         <body>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <img src="assets/scorsese.jpg" alt="Foto de Perfil" class="mini-pic"/>
+                <img src="scorsese.jpg" alt="Foto de Perfil" class="mini-pic"/>
                 <a class="navbar-brand font-weight-bold" href="#">Profile</a>
                 <form class="form-inline my-2 my-lg-0 search">
                     <input class="search" type="search" placeholder="Search in site" aria-label="Search"/>
-                    <button class="button" type="submit"><img class="search-icon" src="assets/search.png" alt=""/></button>
+                    <button class="button" type="submit"><img class="search-icon" src="search.png" alt=""/></button>
                 </form>
             </nav>
             <div>
@@ -172,7 +172,7 @@ function Page({ params }) {
             </div>
             <div>
                 <div class="profile-header text-center">
-                    <img src="assets/scorsese.jpg" alt="Foto de Perfil" class="profile-pic"/>
+                    <img src="scorsese.jpg" alt="Foto de Perfil" class="profile-pic"/>
                     <h2 class="text-white font-weight-bold">{user.name}</h2>
                     <div class="profile-tags">
                         <button type="button" class="btn">Movie Buff</button>
@@ -187,28 +187,28 @@ function Page({ params }) {
                     <div class="row justify-content-center">
                         <div class="col-md-3 text-center">
                             <div class="profile-circle">
-                                <img src="assets/calendar.png" alt="Calendar"/>
+                                <img src="calendar.png" alt="Calendar"/>
                             </div>
                             <p>Joined date</p>
                             <p class="font-weight-bold h4">{user.joinedDate}</p>
                         </div>
                         <div class="col-md-3 text-center">
                             <div class="profile-circle">
-                                <img src="assets/clapperboard.png" alt="Favorite Genre"/>
+                                <img src="clapperboard.png" alt="Favorite Genre"/>
                             </div>
                             <p>Favorite Genre</p>
                             <p class="font-weight-bold h4">{user.favoriteGenre}</p>
                         </div>
                         <div class="col-md-3 text-center">
                             <div class="profile-circle">
-                                <img src="assets/trophy.png" alt="Movie Awards"/>
+                                <img src="trophy.png" alt="Movie Awards"/>
                             </div>
                             <p>Movie Awards</p>
                             <p class="font-weight-bold h4">{user.movieAwards}</p>
                         </div>
                         <div class="col-md-3 text-center">
                             <div class="profile-circle">
-                                <img src="assets/popcorn.png" alt="Watched Movies"/>
+                                <img src="popcorn.png" alt="Watched Movies"/>
                             </div>
                             <p>Watched Movies</p>
                             <p class="font-weight-bold h4">{user.watchedMovies}</p>
@@ -221,12 +221,12 @@ function Page({ params }) {
                     <h2 class="font-weight-bold text-center mt-5">Posts</h2>
                     <div class="card post">
                         <div class="card-header bg-white d-flex">
-                            <img src="assets/scorsese.jpg" class="post-profile" alt=""/>
+                            <img src="scorsese.jpg" class="post-profile" alt=""/>
                             <span class="font-weight-bold">Martin Scorsese</span>
                             <span class="ml-auto">3 hours ago</span>
                         </div>
                         <div class="card-body post-img">
-                            <img src="assets/cards/poor-things.jpg" class="" alt=""/>
+                            <img src="cards/poor-things.jpg" class="" alt=""/>
                         </div>
                         <div class="card-footer bg-white">
                             <div class="d-block">

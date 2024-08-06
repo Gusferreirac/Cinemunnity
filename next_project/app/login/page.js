@@ -201,13 +201,13 @@ function Page() {
                                 <div className="col-md-6">
                                     <button type="button" className="btn btn-outline-dark btn-block">
                                         Continue with Google
-                                        <img src="assets/google.png" alt="Google Logo" className="ml-2 logo" />
+                                        <img src="google.png" alt="Google Logo" className="ml-2 logo" />
                                     </button>
                                 </div>
                                 <div className="col-md-6">
                                     <button type="button" className="btn btn-outline-dark btn-block">
                                         Continue with Meta
-                                        <img src="assets/meta.png" alt="Meta Logo" className="ml-2 logo" />
+                                        <img src="meta.png" alt="Meta Logo" className="ml-2 logo" />
                                     </button>
                                 </div>
                             </div>
