@@ -147,7 +147,7 @@ function Page(){
                       <a href="#" class="btn btn-block hero-btn">Join Now</a>
                   </div>
                   <div class="col-md-6 hero-img">
-                      <img src="assets/hero.png" alt="Placeholder Image" class="img-fluid"/>
+                      <img src="hero.png" alt="Placeholder Image" class="img-fluid"/>
                   </div>
               </div>
             </div>
@@ -160,7 +160,7 @@ function Page(){
               <div class="row mb-4">
                   <div class="card-group">
                       <div class="card col-md-4">
-                          <img class="card-img" src="assets/cards/vfx.jpg" alt="Card image cap"/>
+                          <img class="card-img" src="cards/vfx.jpg" alt="Card image cap"/>
                           <div class="card-body d-flex flex-column">
                               <h5 class="card-title font-weight-bold">Exciting Movies VFX Innovations</h5>
                               <p class="card-text">Stay updated on the last VFX trends.</p>
@@ -168,7 +168,7 @@ function Page(){
                           </div>
                       </div>
                       <div class="card col-md-4">
-                          <img class="card-img" src="assets/cards/deadpool.jpeg" alt="Card image cap"/>
+                          <img class="card-img" src="cards/deadpool.jpeg" alt="Card image cap"/>
                           <div class="card-body d-flex flex-column">
                               <h5 class="card-title font-weight-bold">Upcoming Movies</h5>
                               <p class="card-text">See the most promising upcoming movies.</p>
@@ -176,7 +176,7 @@ function Page(){
                           </div>
                       </div>
                       <div class="card col-md-4">
-                          <img class="card-img" src="assets/cards/poor-things.jpg" alt="Card image cap"/>
+                          <img class="card-img" src="cards/poor-things.jpg" alt="Card image cap"/>
                           <div class="card-body d-flex flex-column">
                               <h5 class="card-title font-weight-bold">Best Movies of 2024</h5>
                               <p class="card-text">Check out the best movies released so far.</p>
@@ -197,7 +197,7 @@ function Page(){
                   </div>
                   <div class="col-sm">
                   <div class="d-block text-center movie">
-                      <img src="assets/movies/inception.jpg" alt=""/>
+                      <img src="movies/inception.jpg" alt=""/>
                       <h3 class="font-weight-bold">Inception</h3>
                       <p>Christopher Nolan</p>
                       <h4 class="font-weight-bold">4.8</h4>
@@ -205,7 +205,7 @@ function Page(){
                   </div>
                   <div class="col-sm">
                   <div class="d-block text-center movie">
-                      <img src="assets/movies/parasite.jpeg" alt=""/>
+                      <img src="movies/parasite.jpeg" alt=""/>
                       <h3 class="font-weight-bold">Parasite</h3>
                       <p>Bong Joon Ho</p>
                       <h4 class="font-weight-bold">4.7</h4>
@@ -230,11 +230,11 @@ function Page(){
                     <div class="carousel-item active">
                       <div class="card post">
                           <div class="card-header bg-white">
-                              <img src="assets/scorsese.jpg" class="post-profile" alt=""/>
+                              <img src="scorsese.jpg" class="post-profile" alt=""/>
                               <span class="font-weight-bold">CinemaLover123</span>
                           </div>
                           <div class="card-body post-img">
-                              <img src="assets/cards/poor-things.jpg" class="" alt=""/>
+                              <img src="cards/poor-things.jpg" class="" alt=""/>
                           </div>
                           <div class="card-footer bg-white">
                               <div class="d-block">
@@ -251,11 +251,11 @@ function Page(){
                     <div class="carousel-item">
                       <div class="card post">
                           <div class="card-header bg-white">
-                              <img src="assets/scorsese.jpg" class="post-profile" alt=""/>
+                              <img src="scorsese.jpg" class="post-profile" alt=""/>
                               <span class="font-weight-bold">CinemaLover123</span>
                           </div>
                           <div class="card-body post-img">
-                              <img src="assets/cards/poor-things.jpg" class="" alt=""/>
+                              <img src="cards/poor-things.jpg" class="" alt=""/>
                           </div>
                           <div class="card-footer bg-white">
                               <div class="d-block">
@@ -272,11 +272,11 @@ function Page(){
                     <div class="carousel-item">
                       <div class="card post">
                           <div class="card-header bg-white">
-                              <img src="assets/scorsese.jpg" class="post-profile" alt=""/>
+                              <img src="scorsese.jpg" class="post-profile" alt=""/>
                               <span class="font-weight-bold">CinemaLover123</span>
                           </div>
                           <div class="card-body post-img">
-                              <img src="assets/cards/poor-things.jpg" class="" alt=""/>
+                              <img src="cards/poor-things.jpg" class="" alt=""/>
                           </div>
                           <div class="card-footer bg-white">
                               <div class="d-block">
@@ -305,10 +305,7 @@ function Page(){
             {/* <!-- Footer --> */}
             <p class="text-muted copyright">© 2024 Cinemmunity. All Rights Reserved</p>
   
-            {/* <!-- Incluindo o Bootstrap JS (necessário para alguns recursos do Bootstrap) --> */}
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+            
           </body>
         </>
     );
