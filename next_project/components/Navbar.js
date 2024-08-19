@@ -1,24 +1,34 @@
 import React from 'react';
-import Navbar from './navbar'; // Assuming Navbar is correctly exported from './navbar'
-import styles from '.navbar.module.css';
+import ButtonBlack from './ButtonBlack';
 
-function Index() {
+function Link({ href, title }) {
+  return (
+    <a 
+      className='mr-8 text-gray-500 decoration-transparent hover:text-gray-800' 
+      href={href}>
+        {title}
+    </a>
+  );
+}
+
+
+function Navbar() {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light mt-2">
-        <Navbar /> {/* Render the Navbar component */}
-        <div className={styles.navlinks}> {/* Use className instead of class */}
-          <a className={'${styles.navbarText} ${styles.marginRight}'}href="#">Sign In</a>
-          <a className={'${styles.navbarText} ${styles.marginRight}'}href="#">Create Account</a>
-          <a className={'${styles.navbarText} ${styles.marginRight}'}href="#">Films</a>
-          <a className={'${styles.navbarText} ${styles.marginRight}'}href="#">News</a>
-          {/* Add additional navigation items, logout links, etc. as needed */}
-        </div>
-        {/* Additional comments can be added like this */}
-      </nav>
+      <div className='h-16 w-full'>
+        <nav className="absolute left-1/2 transform -translate-x-1/2">
+          <div className='mt-4'> 
+            <Link href='#' title='Sign In' />
+            <Link href='#' title='Create Account' />
+            <Link href='#' title='Films' />
+            <Link href='#' title='News' />
+          </div> 
+          {/* Additional comments can be added like this */}
+        </nav>
+      </div>
     </>
   );
 }
 
-export default Index;
+export default Navbar;
 
