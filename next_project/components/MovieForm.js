@@ -41,7 +41,7 @@ function MovieForm() {
     console.log({ title, plot, fullplot, genres, cast, languages, directors, release, runtime, type });
 
     try {
-      const response = await fetch('/api/add_movie', {
+      const response = await fetch('/api/movies', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',

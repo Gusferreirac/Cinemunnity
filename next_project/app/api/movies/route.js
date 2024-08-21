@@ -28,3 +28,12 @@ export async function POST(req) {
         });
     }
 }
+
+export async function GET(req) {
+    const db = await connectToDatabase();
+    const movies = await db.collection('movies').find().toArray();
+
+    return new Response(JSON.stringify(movies), {
+        headers: { 'Content-Type': 'application/json' }
+    });
+}
