@@ -16,7 +16,7 @@ function Page(){
                         <p>Join our community of film lovers and share your thoughts on the latest movies.</p>
                         <ButtonBlack title='Join Now' isDisabled={false}/>
                     </div>
-                    <div className='max-w-[50%] ml-8'>
+                    <div className='max-w-[50%] ml-auto'>
                         <img className="rounded-lg" src='hero.png' alt='Parasite' />
                     </div>
                 </div>
