@@ -1,4 +1,4 @@
-function ButtonBlack({ title , isDisabled }){
+function ButtonBlack({ title , isDisabled, onClick }){
     return (
         <button 
         className={
@@ -7,8 +7,11 @@ function ButtonBlack({ title , isDisabled }){
             ${isDisabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-800'}
             `
         }
+        onClick={onClick}
         disabled={isDisabled}>
             {title}
+        
+        
         </button>
     );
 }

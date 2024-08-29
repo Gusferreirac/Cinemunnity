@@ -80,7 +80,7 @@ function Page({ params }) {
             <h1 className='text-center font-bold text-black text-3xl my-8'>Posts</h1>
             <div className='space-y-12'> 
                 {userPosts.map(post => (
-                    <Post key={post._id} post={post} user={user}/>
+                    <Post key={post._id} post={post} username={user.name}/>
                 ))}
             </div>
         </div>

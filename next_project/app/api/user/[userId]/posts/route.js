@@ -11,14 +11,17 @@ async function connectToDatabase() {
 
 
 export async function POST(request, { params }) {
-    const { userId } = params;
+    const { user_id } = params;
     const db = await connectToDatabase();
     const collection = db.collection('user_posts');
+    const userCollection = db.collection('users');
+
+    const user_name = await userCollection.findOne({ _id: new ObjectId(userId) });
     const { title, content, tags, creation_date } = await request.json();
 
     try {
         const result = await collection.insertOne(
-            { userId, title, content, tags, creation_date }
+            { user_id, user_name,title, content, tags, creation_date }
         );
     
         return new NextResponse(JSON.stringify({ success: true }), {
