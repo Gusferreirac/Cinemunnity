@@ -11,23 +11,40 @@ async function connectToDatabase() {
 
 
 export async function POST(request, { params }) {
-    const { user_id } = params;
+    console.log('\n\n\n\n');
+    console.log('POST request');
+    const { userId } = params;
+    const user_id = new ObjectId(userId);
     const db = await connectToDatabase();
     const collection = db.collection('user_posts');
     const userCollection = db.collection('users');
 
-    const user_name = await userCollection.findOne({ _id: new ObjectId(userId) });
-    const { title, content, tags, creation_date } = await request.json();
+    const user= await userCollection.findOne({ _id: user_id});
+    const user_name = user.name;
+    const { title, content, tagsArray, creation_date } = await request.json();
+
+    const timestamp = new Date(creation_date);
+
+    const tags = tagsArray.map(function(tag) {
+        return tag.text;
+    });
 
     try {
         const result = await collection.insertOne(
-            { user_id, user_name,title, content, tags, creation_date }
+            { user_id, user_name, title, content, tags, timestamp }
         );
-    
-        return new NextResponse(JSON.stringify({ success: true }), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
+
+        if(result.insertedId) {
+            return new NextResponse(JSON.stringify({ success: true }), {
+                status: 200,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        } else {
+            return new NextResponse(JSON.stringify({ success: false, message: 'Internal Server Error' }), {
+                status: 500,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        }
 
     }catch (error) {
         console.error(`Error creating post: ${error.message}`);

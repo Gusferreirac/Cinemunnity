@@ -15,7 +15,7 @@ export async function GET(request) {
     const collection = db.collection('user_posts');
 
     try {
-        const result = await collection.find().toArray();
+        const result = await collection.find().sort({timestamp: -1}).toArray();
         return new NextResponse(JSON.stringify(result), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },

@@ -1,18 +1,29 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import ButtonBlack from '@/components/ButtonBlack';
 import Post from '@/components/Post';
+import { useCookies } from 'next-client-cookies';
+import { WithContext as ReactTags, SEPARATORS } from 'react-tag-input';
 
 function Posts(){
-    const router = useRouter();
     const [title, setTitle] = useState(''); // Valor de teste
     const [content, setContent] = useState(''); // Valor de teste
+    const [tags, setTags] = useState([]);
     const [movies, setMovies] = useState([]);
     const [communities, setCommunities] = useState([]);
     const [posts, setPosts] = useState([]);
-    const [userNames, setUserNames] = useState([]);
+    const userId = useCookies().get('userId');
+
+    const handleDelete = (index) => {
+        setTags(tags.filter((_, i) => i !== index));
+      };
+    
+      const handleAddition = (tag) => {
+        setTags((prevTags) => {
+          return [...prevTags, tag];
+        });
+      };
 
     //Get movies
     useEffect(() => {
@@ -44,6 +55,37 @@ function Posts(){
         getMovies();
     }, []);
 
+    //Get communities
+    useEffect(() => {
+        async function getCommunities() {
+            try {
+                const response = await fetch('/api/communities', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Size': 10
+                    },
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const data = await response.json();
+                console.log(data);
+                setCommunities(data);
+
+                
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            }
+        }
+        
+        getCommunities();
+    }, []);
+
     //Get posts
     useEffect(() => {
         async function getPosts() {
@@ -60,6 +102,14 @@ function Posts(){
                 }
 
                 const data = await response.json();
+                const today = new Date();
+                data.forEach(post => {
+                    if(today.getDate() === new Date(post.timestamp).getDate()) {
+                        post.timestamp = new Date(post.timestamp).toLocaleTimeString();
+                    }else {
+                        post.timestamp = new Date(post.timestamp).toLocaleDateString();
+                    }
+                });
                 setPosts(data);
 
                 
@@ -75,37 +125,40 @@ function Posts(){
 
     const handleCreatePost = async () => {
         console.log('Create Post');
-        // if (!title || !content) {
-        //     alert('All fields are required.');
-        //     return;
-        // }
+        
+        if (!title || !content || !tags) {
+            alert('All fields are required.');
+            return;
+        }
 
-        // try {
-        //     const response = await fetch('/api/create_post', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({ title, content }),
-        //     });
+        console.log(userId);
 
-        //     if (!response.ok) {
-        //         const errorText = await response.text();
-        //         throw new Error(`Network response was not ok: ${errorText}`);
-        //     }
+        try {
+            const response = await fetch(`/api/user/${userId}/posts`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title, content, tagsArray: tags, creation_date: new Date() }),
+            });
 
-        //     const data = await response.json();
-        //     console.log(data);
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Network response was not ok: ${errorText}`);
+            }
 
-        //     if (data.success) {
-        //         router.push(`/posts/${data.postId}`);
-        //     } else {
-        //         alert(data.message); // Exibe a mensagem de erro
-        //     }
-        // } catch (error) {
-        //     console.error('Error:', error);
-        //     alert('An error occurred. Please try again later.');
-        // }
+            const data = await response.json();
+            console.log(data);
+
+            if (data.success) {
+                router.push(`/feed`);
+            } else {
+                alert(data.message); // Exibe a mensagem de erro
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again later.');
+        }
     };
 
     return (
@@ -145,10 +198,11 @@ function Posts(){
                         rows={8}
                         onChange={(e) => setContent(e.target.value)} 
                     />
-                    <input
-                        className='border border-black px-3 py-1 focus:outline-none rounded-md' 
-                        type="text" 
-                        placeholder='Tags'
+                    <ReactTags
+                        tags={tags}
+                        handleDelete={handleDelete}
+                        handleAddition={handleAddition}
+
                     />
                 </form>
                <ButtonBlack title='Create Post' isDisabled={false} onClick={handleCreatePost}/>
@@ -162,12 +216,18 @@ function Posts(){
                </div>
             </div>
             <div className='bg-gray-200 h-full'>
-                <h1>Communities</h1>
-                <ul>
-                    <li>Community 1</li>
-                    <li>Community 2</li>
-                    <li>Community 3</li>
-                </ul>
+            <h1 className='font-bold text-center mt-8 mb-8 text-2xl'>Communities</h1>
+                <div className='grid grid-flow-row gap-8'>
+                    { communities ?
+                        communities.map((community) => (
+                            <div key={community._id} className='flex flex-col gap-4'>
+                                <h1 className='font-bold text-center'>{community.name}</h1>
+                                <p className='text-justify text-gray-600 p-6'>{community.description}</p>
+                                <hr className='border-gray-300'/>
+                            </div>
+                        ))
+                    : <span className='text-center font-bold text-gray-400'>Loading...</span> }
+                </div>
             </div>
         </div>
     );
