@@ -6,14 +6,15 @@ import Post from '@/components/Post';
 import { useCookies } from 'next-client-cookies';
 import { WithContext as ReactTags, SEPARATORS } from 'react-tag-input';
 import Navbar from '@/components/Navbar';
+import Loading from '@/components/LoadingScreen';
 
 function Posts(){
     const [title, setTitle] = useState(''); // Valor de teste
     const [content, setContent] = useState(''); // Valor de teste
     const [tags, setTags] = useState([]);
-    const [movies, setMovies] = useState([]);
-    const [communities, setCommunities] = useState([]);
-    const [posts, setPosts] = useState([]);
+    const [movies, setMovies] = useState(null);
+    const [communities, setCommunities] = useState(null);
+    const [posts, setPosts] = useState(null);
     const userId = useCookies().get('userId');
 
     const handleDelete = (index) => {
@@ -161,6 +162,8 @@ function Posts(){
             alert('An error occurred. Please try again later.');
         }
     };
+
+    if (!posts) return <Loading />;
 
     return (
         <>

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Post from '@/components/Post';
 import Navbar from '@/components/Navbar';
+import Loading from '@/components/LoadingScreen';
 
 function Page({ params }) {
     const { userId } = params;
@@ -61,7 +62,7 @@ function Page({ params }) {
     
 
     if (error) return <p>Error: {error}</p>;
-    if (!user) return <p>Loading...</p>;
+    if (!user) return <Loading />;
 
     return (
         <div>
@@ -75,7 +76,8 @@ function Page({ params }) {
                         ))}
                     </div>
                     <span>Joined In: {user.timestamp}</span>
-                    <button  className='bg-blue-600 hover:bg-blue-500 text-white font-bold p-2 w-80 rounded-lg'> Follow </button>
+                    
+                    <button  className='bg-blue-600 hover:bg-blue-500 text-white font-bold p-2 w-80 rounded-lg'> Editar Perfil </button>
                 </div>
             </div>
 
