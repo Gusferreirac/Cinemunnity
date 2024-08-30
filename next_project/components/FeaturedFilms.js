@@ -19,7 +19,7 @@ return (
             {movies.map((movie) => (
                     <div key={movie._id} className="grid grid-rows-1">
                             <div>
-                                <img className="mb-2 rounded-full h-28 w-28 object-cover ml-auto mr-auto" src={movie.poster} alt={movie.title} />
+                                <img className="mb-2  h-40 w-28  ml-auto mr-auto" src={movie.poster} alt={movie.title} />
                                 <h1 className="font-bold text-xl text-center mx-auto">{movie.title}</h1>
                                 <p className="mt-4 text-center mx-auto">{movie.year}</p>
                                 <p>{movie.plot}</p>

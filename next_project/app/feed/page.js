@@ -5,6 +5,7 @@ import ButtonBlack from '@/components/ButtonBlack';
 import Post from '@/components/Post';
 import { useCookies } from 'next-client-cookies';
 import { WithContext as ReactTags, SEPARATORS } from 'react-tag-input';
+import Navbar from '@/components/Navbar';
 
 function Posts(){
     const [title, setTitle] = useState(''); // Valor de teste
@@ -162,74 +163,77 @@ function Posts(){
     };
 
     return (
-        <div className='w-full grid grid-cols-3 gap-8'>
-            <div className='bg-gray-200 h-full'>
-                <h1 className='font-bold text-center mt-8 mb-8 text-2xl'>Movies</h1>
-                <div className='grid grid-flow-row gap-8'>
-                    { movies ?
-                        movies.map((movie) => (
-                            <div key={movie._id} className='flex flex-col gap-4'>
-                                <h1 className='font-bold text-center'>{movie.title}</h1>
-                                <p className='text-center'>{movie.year}</p>
-                                <p className='text-justify text-gray-600 p-6'>{movie.plot}</p>
-                                <img src={movie.poster} alt={movie.title} className='w-full h-64 object-contain mb-4'/>
-                                <hr className='border-gray-300'/>
-                            </div>
+        <>
+            <Navbar />
+            <div className='w-full grid grid-cols-3 gap-8'>
+                <div className='bg-gray-200 h-full'>
+                    <h1 className='font-bold text-center mt-8 mb-8 text-2xl'>Movies</h1>
+                    <div className='grid grid-flow-row gap-8'>
+                        { movies ?
+                            movies.map((movie) => (
+                                <div key={movie._id} className='flex flex-col gap-4'>
+                                    <h1 className='font-bold text-center'>{movie.title}</h1>
+                                    <p className='text-center'>{movie.year}</p>
+                                    <p className='text-justify text-gray-600 p-6'>{movie.plot}</p>
+                                    <img src={movie.poster} alt={movie.title} className='w-full h-64 object-contain mb-4'/>
+                                    <hr className='border-gray-300'/>
+                                </div>
+                            ))
+                        : <span className='text-center font-bold text-gray-400'>Loading...</span> }
+                    </div>
+                </div>
+                <div className='flex flex-col mt-8'>
+                    <h1 className='font-bold text-2xl mb-8'>Shares your thoughts</h1>
+                    
+                    <form className='flex flex-col gap-4 mb-8'>
+                        <input 
+                            className='border border-black px-3 py-1 focus:outline-none rounded-md'
+                            placeholder='Title' 
+                            type="text" 
+                            value={title} 
+                            onChange={(e) => setTitle(e.target.value)} 
+                        />
+
+                        <textarea 
+                            className='border border-black px-3 py-1 focus:outline-none rounded-md'
+                            placeholder='Content' 
+                            value={content} 
+                            rows={8}
+                            onChange={(e) => setContent(e.target.value)} 
+                        />
+                        <ReactTags
+                            tags={tags}
+                            handleDelete={handleDelete}
+                            handleAddition={handleAddition}
+
+                        />
+                    </form>
+                <ButtonBlack title='Create Post' isDisabled={false} onClick={handleCreatePost}/>
+                <hr className='border-gray-400 mt-8'/>
+                <div className='mt-8 space-y-8'>
+                    { posts ? 
+                        posts.map((post) => (
+                            <Post key={post._id} post={post} username={post.user_name}/>
                         ))
                     : <span className='text-center font-bold text-gray-400'>Loading...</span> }
                 </div>
-            </div>
-            <div className='flex flex-col mt-8'>
-                <h1 className='font-bold text-2xl mb-8'>Shares your thoughts</h1>
-                
-                <form className='flex flex-col gap-4 mb-8'>
-                    <input 
-                        className='border border-black px-3 py-1 focus:outline-none rounded-md'
-                        placeholder='Title' 
-                        type="text" 
-                        value={title} 
-                        onChange={(e) => setTitle(e.target.value)} 
-                    />
-
-                    <textarea 
-                        className='border border-black px-3 py-1 focus:outline-none rounded-md'
-                        placeholder='Content' 
-                        value={content} 
-                        rows={8}
-                        onChange={(e) => setContent(e.target.value)} 
-                    />
-                    <ReactTags
-                        tags={tags}
-                        handleDelete={handleDelete}
-                        handleAddition={handleAddition}
-
-                    />
-                </form>
-               <ButtonBlack title='Create Post' isDisabled={false} onClick={handleCreatePost}/>
-               <hr className='border-gray-400 mt-8'/>
-               <div className='mt-8 space-y-8'>
-                { posts ? 
-                    posts.map((post) => (
-                        <Post key={post._id} post={post} username={post.user_name}/>
-                    ))
-                : <span className='text-center font-bold text-gray-400'>Loading...</span> }
-               </div>
-            </div>
-            <div className='bg-gray-200 h-full'>
-            <h1 className='font-bold text-center mt-8 mb-8 text-2xl'>Communities</h1>
-                <div className='grid grid-flow-row gap-8'>
-                    { communities ?
-                        communities.map((community) => (
-                            <div key={community._id} className='flex flex-col gap-4'>
-                                <h1 className='font-bold text-center'>{community.name}</h1>
-                                <p className='text-justify text-gray-600 p-6'>{community.description}</p>
-                                <hr className='border-gray-300'/>
-                            </div>
-                        ))
-                    : <span className='text-center font-bold text-gray-400'>Loading...</span> }
+                </div>
+                <div className='bg-gray-200 h-full'>
+                <h1 className='font-bold text-center mt-8 mb-8 text-2xl'>Communities</h1>
+                    <div className='grid grid-flow-row gap-8'>
+                        { communities ?
+                            communities.map((community) => (
+                                <div key={community._id} className='flex flex-col gap-4'>
+                                    <h1 className='font-bold text-center'>{community.name}</h1>
+                                    <p className='text-justify text-gray-600 p-6'>{community.description}</p>
+                                    <hr className='border-gray-300'/>
+                                </div>
+                            ))
+                        : <span className='text-center font-bold text-gray-400'>Loading...</span> }
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 }
 

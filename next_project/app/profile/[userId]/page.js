@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Post from '@/components/Post';
+import Navbar from '@/components/Navbar';
 
 function Page({ params }) {
     const { userId } = params;
@@ -64,6 +65,7 @@ function Page({ params }) {
 
     return (
         <div>
+            <Navbar />
             <div className='bg-gray-400 h-80'>
                 <div className='flex flex-col space-y-4 justify-center items-center h-full'>
                     <h1 className='font-bold text-4xl text-white'>{user.name}</h1>
@@ -78,7 +80,7 @@ function Page({ params }) {
             </div>
 
             <h1 className='text-center font-bold text-black text-3xl my-8'>Posts</h1>
-            <div className='space-y-12'> 
+            <div className='space-y-12 max-w-[40%] mx-auto'> 
                 {userPosts.map(post => (
                     <Post key={post._id} post={post} username={user.name}/>
                 ))}

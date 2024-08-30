@@ -7,8 +7,7 @@ return (
                 <span className="text-right">{post.timestamp}</span>
             </div>
             <h1 className="text-center font-bold text-xl">{post.title}</h1>
-            <p>{post.content}</p>
-            <p>{post.creation_date}</p>
+            <p className="text-center">{post.content}</p>
          
             <div className='text-center space-x-4 pb-4'>
                 {post.tags.map(tag => (

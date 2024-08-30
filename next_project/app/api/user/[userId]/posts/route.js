@@ -61,7 +61,7 @@ export async function GET(request, { params }) {
     const collection = db.collection('user_posts');
 
     try {
-        const result = await collection.find({ user_id : new ObjectId(params.userId)}).toArray();
+        const result = await collection.find({ user_id : new ObjectId(params.userId)}).sort({timestamp: -1}).toArray();
         return new NextResponse(JSON.stringify(result), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },
