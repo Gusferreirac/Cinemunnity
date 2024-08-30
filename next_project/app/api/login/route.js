@@ -1,5 +1,8 @@
+
+
 import { MongoClient } from 'mongodb';
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 let client;
 
@@ -12,16 +15,18 @@ async function connectToDatabase() {
 }
 
 export async function POST(request) {
+    
     const { email, login, password } = await request.json();
     const db = await connectToDatabase();
     const collection = db.collection('users'); // Substitua pelo nome da sua coleção
 
-    console.log('email', email);
-    console.log('login', login);
+    
 
     const user = await collection.findOne({ email, login, password });
 
     if (user) {
+        cookies().set('userId', user._id);
+        cookies().set('name', user.name);
         return new NextResponse(JSON.stringify({ success: true, userId: user._id }), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },

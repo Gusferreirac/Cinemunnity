@@ -8,6 +8,7 @@ function Page() {
     const [email, setEmail] = useState('sean_bean@gameofthron.es'); // Valor de teste
     const [login, setLogin] = useState('12345'); // Valor de teste
     const [password, setPassword] = useState('1234'); // Valor de teste
+    
 
     const handleLogin = async () => {
         if (!email || !login || !password) {
@@ -26,6 +27,7 @@ function Page() {
 
             if (!response.ok) {
                 const errorText = await response.text();
+
                 throw new Error(`Network response was not ok: ${errorText}`);
             }
 
