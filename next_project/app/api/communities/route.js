@@ -1,4 +1,5 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
+import { NextResponse } from 'next/server';
 
 let client;
 
@@ -22,4 +23,39 @@ export async function GET(req) {
     return new Response(JSON.stringify(communities), {
         headers: { 'Content-Type': 'application/json' }
     });
+}
+
+export async function POST(req) {
+    const db = await connectToDatabase();
+    const body = await req.json();
+    const { name, description, creation_date, creator } = body;
+
+    const alreadyExists = await db.collection('communities').findOne({name});
+
+    if(alreadyExists) {
+        return new NextResponse(JSON.stringify({ success: false, message: 'Community already exists' }), {
+            status: 400,
+            headers: { 'Content-Type': 'application/json' },
+        });
+    }
+
+    const users = [new ObjectId(creator)];
+    const timestamp = new Date(creation_date)
+
+    try{
+        const community = await db.collection('communities').insertOne({ name, description, timestamp, users });
+
+        if(community.insertedId) {
+            return new NextResponse(JSON.stringify({ success: true }), {
+                status: 200,
+                headers: { 'Content-Type': 'application/json' },
+            });
+        }
+    } catch (error) {
+        console.error(`Error creating community: ${error.message}`);
+        return new NextResponse(JSON.stringify({ success: false, message: 'Internal Server Error', error: error.message }), {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' },
+        });
+    }
 }

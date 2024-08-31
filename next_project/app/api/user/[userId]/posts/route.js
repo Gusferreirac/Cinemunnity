@@ -11,8 +11,6 @@ async function connectToDatabase() {
 
 
 export async function POST(request, { params }) {
-    console.log('\n\n\n\n');
-    console.log('POST request');
     const { userId } = params;
     const user_id = new ObjectId(userId);
     const db = await connectToDatabase();

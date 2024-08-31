@@ -7,6 +7,7 @@ import { useCookies } from 'next-client-cookies';
 import { WithContext as ReactTags, SEPARATORS } from 'react-tag-input';
 import Navbar from '@/components/Navbar';
 import Loading from '@/components/LoadingScreen';
+import Card from '@/components/CommunityCard';
 
 function Posts(){
     const [title, setTitle] = useState(''); // Valor de teste
@@ -39,7 +40,7 @@ function Posts(){
                     },
                 });
                 
-                if (!response.ok) {
+                if (!response) {
                     throw new Error('Network response was not ok');
                 }
 
@@ -163,7 +164,7 @@ function Posts(){
         }
     };
 
-    if (!posts) return <Loading />;
+    if (!posts || !movies || !communities) return <Loading />;
 
     return (
         <>
@@ -223,14 +224,10 @@ function Posts(){
                 </div>
                 <div className='bg-gray-200 h-full'>
                 <h1 className='font-bold text-center mt-8 mb-8 text-2xl'>Communities</h1>
-                    <div className='grid grid-flow-row gap-8'>
+                    <div className='grid grid-flow-row gap-8 p-8'>
                         { communities ?
                             communities.map((community) => (
-                                <div key={community._id} className='flex flex-col gap-4'>
-                                    <h1 className='font-bold text-center'>{community.name}</h1>
-                                    <p className='text-justify text-gray-600 p-6'>{community.description}</p>
-                                    <hr className='border-gray-300'/>
-                                </div>
+                               <Card key={community._id} community={community}/>
                             ))
                         : <span className='text-center font-bold text-gray-400'>Loading...</span> }
                     </div>
