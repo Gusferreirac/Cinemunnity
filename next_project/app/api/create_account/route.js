@@ -38,7 +38,8 @@ export async function POST(req) {
         }
 
         // Inserir novo usuário
-        const result = await usersCollection.insertOne({ email, login, password });
+        const timestamp = new Date();
+        const result = await usersCollection.insertOne({ email, login, password, timestamp });
         const newUser = result.insertedId;
 
         console.log('User created:', newUser); // Adicione este log para depuração

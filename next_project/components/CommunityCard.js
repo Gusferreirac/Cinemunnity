@@ -16,7 +16,6 @@ function Card({community }) {
             <p className='text-justify text-gray-600 p-6 '>{community.description}</p>
             <button className='border border-black w-1/2 h-12 rounded-md mb-8 mx-auto hover:bg-black hover:text-white transition-colors' onClick={goToCommunity}>Go to Community</button>
         </div>  
-        <hr className='border-gray-300'/>
     </>
   );
 }

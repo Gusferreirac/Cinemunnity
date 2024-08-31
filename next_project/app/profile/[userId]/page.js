@@ -12,6 +12,7 @@ function Page({ params }) {
     const [user, setUser] = useState(null);
     const [userPosts, setUserPosts] = useState([]);
     const [error, setError] = useState(null);
+    const router = useRouter();
 
     useEffect(() => {
         async function fetchUser() {
@@ -59,6 +60,10 @@ function Page({ params }) {
     useEffect(() => {
         fetchUserPosts();
     }, [userId]);
+
+    const goToEdit = () => {
+        router.push(`/profile/${userId}/edit`);
+    }
     
 
     if (error) return <p>Error: {error}</p>;
@@ -70,6 +75,7 @@ function Page({ params }) {
             <div className='bg-gray-400 h-80'>
                 <div className='flex flex-col space-y-4 justify-center items-center h-full'>
                     <h1 className='font-bold text-4xl text-white'>{user.name}</h1>
+                    <p className='text-white'>{user.bio}</p>
                     <div className='space-x-4'>
                         {user.tags.map(tag => (
                             <span className='bg-gray-300 p-2 rounded-lg' key={tag}>{tag}</span>
@@ -77,7 +83,7 @@ function Page({ params }) {
                     </div>
                     <span>Joined In: {user.timestamp}</span>
                     
-                    <button  className='bg-blue-600 hover:bg-blue-500 text-white font-bold p-2 w-80 rounded-lg'> Editar Perfil </button>
+                    <button  className='bg-blue-600 hover:bg-blue-500 text-white font-bold p-2 w-80 rounded-lg' onClick={goToEdit}> Editar Perfil </button>
                 </div>
             </div>
 

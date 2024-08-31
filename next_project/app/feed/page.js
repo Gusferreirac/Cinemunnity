@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import ButtonBlack from '@/components/ButtonBlack';
 import Post from '@/components/Post';
 import { useCookies } from 'next-client-cookies';
@@ -17,6 +18,7 @@ function Posts(){
     const [communities, setCommunities] = useState(null);
     const [posts, setPosts] = useState(null);
     const userId = useCookies().get('userId');
+    const router = useRouter();
 
     const handleDelete = (index) => {
         setTags(tags.filter((_, i) => i !== index));
@@ -164,6 +166,10 @@ function Posts(){
         }
     };
 
+    const goToMovie = (movieId) => () => {
+        router.push(`/movies/${movieId}`);
+    };
+
     if (!posts || !movies || !communities) return <Loading />;
 
     return (
@@ -180,6 +186,7 @@ function Posts(){
                                     <p className='text-center'>{movie.year}</p>
                                     <p className='text-justify text-gray-600 p-6'>{movie.plot}</p>
                                     <img src={movie.poster} alt={movie.title} className='w-full h-64 object-contain mb-4'/>
+                                    <a onClick={goToMovie(movie._id)} className='text-center text-blue-500 font-bold hover:cursor-pointer hover:underline'>See more</a>
                                     <hr className='border-gray-300'/>
                                 </div>
                             ))
@@ -227,7 +234,10 @@ function Posts(){
                     <div className='grid grid-flow-row gap-8 p-8'>
                         { communities ?
                             communities.map((community) => (
+                                <>
                                <Card key={community._id} community={community}/>
+                               <hr className='border-gray-300'/>
+                               </>
                             ))
                         : <span className='text-center font-bold text-gray-400'>Loading...</span> }
                     </div>

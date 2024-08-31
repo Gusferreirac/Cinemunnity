@@ -69,7 +69,7 @@ function Page() {
             console.log(data);
 
             if (data.success) {
-                router.push(`/profile_edit/${data.userId}`);
+                router.push(`/profile/${data.userId}/edit`);
             } else {
                 alert(data.message); // Exibe a mensagem de erro
             }

@@ -24,9 +24,9 @@ function Navbar() {
         <nav className="absolute left-1/2 transform -translate-x-1/2 ">
           <div className='mt-4'> 
             <Link href='/feed' title='Feed' />
-            <Link href='#' title='Communities' />
+            <Link href='/community/list' title='Communities' />
             <Link href='/community/create' title='Create Community' />
-            <Link href='#' title='Films' />
+            <Link href='/movies/list' title='Films' />
             <Link href={'/profile/' + userId} title='Profile' />
           </div> 
           {/* Additional comments can be added like this */}
