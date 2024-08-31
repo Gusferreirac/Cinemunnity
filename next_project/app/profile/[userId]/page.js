@@ -11,6 +11,7 @@ function Page({ params }) {
     const { userId } = params;
     const [user, setUser] = useState(null);
     const [userPosts, setUserPosts] = useState([]);
+    const [userReviews, setUserReviews] = useState([]);
     const [error, setError] = useState(null);
     const router = useRouter();
 
@@ -61,6 +62,34 @@ function Page({ params }) {
         fetchUserPosts();
     }, [userId]);
 
+    useEffect(() => {
+        async function fetchUserReviews() {
+            try {
+                const response = await fetch(`/api/user/${userId}/reviews`);
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status} ${response.statusText}`);
+                }
+                const data = await response.json();
+                console.log('User reviews:', data);
+                const today = new Date();
+                data.forEach(review => {
+                    review.title = review.title + ' - ' + review.movie_title;
+                    if(today.getDate() === new Date(review.timestamp).getDate()) {
+                        review.timestamp = new Date(review.timestamp).toLocaleTimeString();
+                    }else {
+                        review.timestamp = new Date(review.timestamp).toLocaleDateString();
+                    }
+                });
+                // Process the reviews data here
+                setUserReviews(data);
+            } catch (error) {
+                console.error('Fetch user reviews error:', error);
+                setError(error.message);
+            }
+        }
+        fetchUserReviews();
+    }, [userId]);
+
     const goToEdit = () => {
         router.push(`/profile/${userId}/edit`);
     }
@@ -85,6 +114,13 @@ function Page({ params }) {
                     
                     <button  className='bg-blue-600 hover:bg-blue-500 text-white font-bold p-2 w-80 rounded-lg' onClick={goToEdit}> Editar Perfil </button>
                 </div>
+            </div>
+
+            <h1 className='text-center font-bold text-black text-3xl my-8'>Reviews</h1>
+            <div className='space-y-12 max-w-[40%] mx-auto'> 
+                {userReviews.map(review => (
+                    <Post key={review._id} post={review} username={user.name}/>
+                ))}
             </div>
 
             <h1 className='text-center font-bold text-black text-3xl my-8'>Posts</h1>

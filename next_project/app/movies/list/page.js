@@ -26,6 +26,7 @@ function Page() {
                 }
 
                 const data = await response.json();
+                console.log('Movies:', data);
                 setMovies(data);
             } catch (error) {
                 console.error('Error:', error);

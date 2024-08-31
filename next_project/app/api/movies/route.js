@@ -33,8 +33,19 @@ export async function GET(req) {
     const db = await connectToDatabase();
     const size = parseInt(req.headers.get('Size'));
 
+    const movies = await db.collection('movies').aggregate([
+        {
+            $match: { 'tomatoes.viewer.rating': { $exists: true } }, // Filtra os filmes que possuem a propriedade tomatoes.viewer.rating
+            $match: { 'tomatoes.critic.rating': { $exists: true } }, // Filtra os filmes que possuem a propriedade tomatoes.critics.rating 
+        },
+        {
+            $limit: size // Limita o número de resultados retornados
+        }
+    ]).toArray();
 
-    const movies = await db.collection('movies').find().sort({x:1}).limit(size).toArray();
+    console.log('====================================');
+    console.log('Movies:', movies);
+    console.log('====================================');
 
     return new Response(JSON.stringify(movies), {
         headers: { 'Content-Type': 'application/json' }

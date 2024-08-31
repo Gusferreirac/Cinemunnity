@@ -14,7 +14,7 @@ async function connectToDatabase() {
 export async function GET(req) {
     const db = await connectToDatabase();
 
-    const movies = await db.collection('movies').aggregate([{ $match: { poster: { $exists: true } } }, { $sample: { size: 2 } }]).toArray();
+    const movies = await db.collection('movies').aggregate([{ $match: { poster: { $exists: true } } }, {$sort: { 'year': -1} },{ $sample: { size: 2 } }]).toArray();
     console.log(movies);
 
     return new Response(JSON.stringify(movies), {
