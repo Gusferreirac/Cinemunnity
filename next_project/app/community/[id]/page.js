@@ -102,6 +102,7 @@ function Page({ params }) {
                 data.timestamp = new Date(data.timestamp).toLocaleDateString();
 
                 if('posts' in data){
+                    data.posts.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
                     const today = new Date();
 
                     data.posts.forEach(post => {
