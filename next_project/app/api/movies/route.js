@@ -35,13 +35,16 @@ export async function GET(req) {
 
     const movies = await db.collection('movies').aggregate([
         {
-            $match: { 'tomatoes.viewer.rating': { $exists: true } }, // Filtra os filmes que possuem a propriedade tomatoes.viewer.rating
-            $match: { 'tomatoes.critic.rating': { $exists: true } }, // Filtra os filmes que possuem a propriedade tomatoes.critics.rating 
+            $match: { 
+                'tomatoes.viewer.rating': { $exists: true }, 
+                'tomatoes.critic.rating': { $exists: true } 
+            } // Filtra os filmes que possuem as propriedades tomatoes.viewer.rating e tomatoes.critic.rating
         },
         {
-            $limit: size // Limita o número de resultados retornados
+            $sample: { size: size } // Seleciona aleatoriamente "size" documentos que atendem ao filtro
         }
     ]).toArray();
+    
 
     console.log('====================================');
     console.log('Movies:', movies);
