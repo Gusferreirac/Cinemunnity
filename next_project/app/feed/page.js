@@ -156,7 +156,7 @@ function Posts(){
             console.log(data);
 
             if (data.success) {
-                router.push(`/feed`);
+                window.location.reload();
             } else {
                 alert(data.message); // Exibe a mensagem de erro
             }

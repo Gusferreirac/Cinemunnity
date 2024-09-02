@@ -38,7 +38,7 @@ function Navbar() {
           <div className='mt-4'> 
             <Link href='/login' title='Sign In' />
             <Link href='/login' title='Create Account' />
-            <Link href='#' title='Films' />
+            <Link href='/movies/list' title='Films' />
           </div> 
           {/* Additional comments can be added like this */}
         </nav>

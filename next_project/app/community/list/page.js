@@ -45,10 +45,10 @@ function Page() {
     if (!communities) return <Loading />;
 
     return(
-        <div className='h-full'>
+        <div className='h-full w-4/5 mx-auto'>
             <Navbar />
             <h1 className='font-bold text-center mt-8 mb-8 text-2xl'>Communities</h1>
-            <div className='grid grid-cols-5 gap-8 p-8'>
+            <div className='grid grid-cols-3 gap-8 p-8'>
                 { communities ?
                     communities.map((community) => (
                         <Card key={community._id} community={community}/>

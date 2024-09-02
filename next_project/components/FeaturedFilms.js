@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import Loading from "./LoadingScreen";
 
 function FeaturedFilms() {
     const [movies, setMovies] = useState([]);
@@ -9,6 +10,8 @@ function FeaturedFilms() {
         .then((response) => response.json())
         .then((data) => setMovies(data))
     }, []);
+
+    if(movies.length === 0) return <Loading/>;
 
 return (
     <div className="grid grid-cols-3 mb-12 gap-x-4 p-8">
